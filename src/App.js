@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Day from './components/Day';
 import WeatherPanel from './components/WeatherPanel';
 
 class App extends Component {
@@ -16,14 +15,15 @@ class App extends Component {
 
   componentDidMount() {
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
-    const URL = `http://api.openweathermap.org/data/2.5/forecast?id=4487042&cnt=5&appid=${API_KEY}`
+    const URL = `http://api.openweathermap.org/data/2.5/forecast?id=4487042&units=imperial&appid=${API_KEY}`
     fetch(URL)
-      .then(res => res.json())
-      .then(
-        (result) => {
+    .then(res => res.json())
+    .then(
+      (result) => {
+        const dailyWeather = result.list.filter(day => (day.dt_txt.includes('18:00:00')))
           this.setState({
             isLoaded: true,
-            weather: result.list
+            weather: dailyWeather
           });
         },
         (error) => {
@@ -37,6 +37,7 @@ class App extends Component {
 
     render() {
       const { error, isLoaded, weather } = this.state
+
       if (error) {
         return <div>Error: {error.message}</div>
       } else if (!isLoaded) {
@@ -49,11 +50,7 @@ class App extends Component {
           </header>
     
           <div>
-            <ul>
-              {weather.map((day) => (
-                <li key={day.dt}> {day.dt} </li>
-              ))}
-            </ul>
+            <WeatherPanel weather={this.state.weather}/>
           </div>
         </div>
       );
