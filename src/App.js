@@ -36,7 +36,7 @@ class App extends Component {
   }
 
     render() {
-      const { error, isLoaded, weather } = this.state
+      const { error, isLoaded } = this.state
 
       if (error) {
         return <div>Error: {error.message}</div>

@@ -1,22 +1,19 @@
 import React from 'react'
 import styles from './WeatherPanel.module.css'
-import Day from '../Day'
+import DayCard from '../DayCard'
 function WeatherPanel(props) {
+    console.log(props.weather)
+
+    const weather = props.weather
+
     return (
         <div className={styles.WeatherPanel}>
-
-            <ul>
-            {props.weather.map((day) => (
-                <li key={day.dt}>
-                    {day.dt}
-                </li>
+            {weather.map((day) => (
+                <DayCard 
+                dayInfo={day}
+                key={day.dt}
+                />
               ))}
-            </ul>
-            <Day />
-            <Day />
-            <Day />
-            <Day />
-            <Day />
         </div>
     )
 }
