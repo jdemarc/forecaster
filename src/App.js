@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import './App.css';
-import WeatherPanel from './components/WeatherPanel';
+import React, { Component } from 'react'
+import './App.css'
+import WeatherPanel from './components/WeatherPanel'
 
 class App extends Component {
   constructor(props) {
@@ -36,23 +36,20 @@ class App extends Component {
   }
 
     render() {
-      const { error, isLoaded } = this.state
-
-      if (error) {
-        return <div>Error: {error.message}</div>
-      } else if (!isLoaded) {
+      if (this.state.error) {
+        return <div>Error: {this.state.error.message}</div>
+      } else if (!this.state.isLoaded) {
         return <div>Loading...</div>
       } else {
-      return (
-        <div className="App">
-          <header className="Weather-hdr">
-            5-Day Forecast
-          </header>
-    
-          <div>
+        return (
+          <div className="App">
+            <header className="Weather-hdr">
+              5-Day Forecast
+            </header>
+      
             <WeatherPanel weather={this.state.weather}/>
+
           </div>
-        </div>
       );
     }
   }

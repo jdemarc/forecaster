@@ -8,6 +8,7 @@ function WeatherPanel(props) {
     return (
         <div className={styles.WeatherPanel}>
             <h2 className={styles['location-hdr']}>Raleigh, NC</h2>
+
             <div className={styles['day-ctr']}>
                 {weather.map((day) => (
                     <DayCard 
