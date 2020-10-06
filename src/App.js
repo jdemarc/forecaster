@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import WeatherPanel from './components/WeatherPanel'
+import Search from './components/Search'
 import { fetchWeatherData } from './services/weather-api'
 
 class App extends Component {
@@ -14,7 +15,6 @@ class App extends Component {
 
   // Edge cases needed.
   handleCityChange = async () => {
-    // console.log(city)
     const weatherData = await fetchWeatherData(this.state.city);
     
     if (weatherData) {
@@ -40,24 +40,15 @@ class App extends Component {
   render() {
       return (
         <div className="App">
-          <header className="Weather-hdr">
+          <div className="Weather-hdr">
             <h2>Weather app</h2>
-
-            <div className="search">
-              <input 
-                type='text'
-                placeholder='Raleigh'
-                maxLength='50'
-                value={this.state.city}
-                onChange={this.handleInput}
-              />
-
-              <button onClick={this.handleCityChange}>
-                Search
-              </button>
-            </div>
-          </header>
-    
+            <Search
+              city={this.state.city}
+              handleInput={this.handleInput}
+              handleCityChange={this.handleCityChange}
+            />
+          </div>
+          
           {/* { this.state.forecast
           ?  <WeatherPanel
               city={this.state.city}
