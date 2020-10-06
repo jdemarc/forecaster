@@ -9,7 +9,7 @@ class App extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      weather: []
+      weather: [],
     }
   }
 

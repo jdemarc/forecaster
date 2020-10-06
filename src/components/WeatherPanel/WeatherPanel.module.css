@@ -1,5 +1,14 @@
 .WeatherPanel {
     display: flex;
     flex-direction: column;
+}
+
+.location-hdr {
+    display: flex;
+    justify-content: center;
+}
+
+.day-ctr {
+    display: flex;
     justify-content: space-evenly;
 }

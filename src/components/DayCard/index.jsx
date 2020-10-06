@@ -19,10 +19,11 @@ function DayCard(props) {
             <WeatherIcon
                 name='owm'
                 iconId={dayInfo.weather[0].id}
-                style={{fontSize: 150}}
+                style={{fontSize: 50}}
             />
+            <p style={{fontSize: 30}} 
+            >{Math.floor(dayInfo.main.temp)} °F</p>
             <p>{dayInfo.weather[0].description}</p>
-            <p>{Math.floor(dayInfo.main.temp)}</p>
         </div>
     )
 }
