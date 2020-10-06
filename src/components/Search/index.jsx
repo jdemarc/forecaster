@@ -6,7 +6,7 @@ function Search(props) {
         <div className={styles.Search}>
             <input 
                 type='text'
-                placeholder='Raleigh'
+                placeholder='Enter city here...'
                 maxLength='50'
                 value={props.city}
                 onChange={(e) => {props.handleInput(e)}}

@@ -5,10 +5,16 @@
 
 .Search input[type=text] {
     box-sizing: border-box;
-    border: 1px solid #555;
+    border: 2px solid #555;
+    border-style: none none solid none;
     outline: none;
-    background-color: none;
+    background: transparent;
     text-align: center;
+}
+
+.Search input[type=text]:focus, input[type=text]:hover {
+    background-color: lightgray;
+    border-color: orange;
 }
 
 .Search button {
@@ -17,10 +23,12 @@
     font-size: 16px;
     border: 1px solid #555;
     cursor: pointer;
-    padding: 5px;
+    padding: 10px;
     margin: 0 10px;
+    background: transparent;
 }
 
 .Search button:hover {
-    background-color: lightgreen;
+    border-color: orange;
+    background-color: lightgray;
 }
