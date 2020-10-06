@@ -9,16 +9,16 @@ function WeatherPanel(props) {
 
     return (
         <div className={styles.WeatherPanel}>
-            {/* <h2 className={styles['location-hdr']}>{weather.name}, {weather.sys.country}</h2> */}
-                {/* <CurrentWeather weather={weather}/> */}
-            <div className={styles['day-ctr']}>
+            <h2 className={styles['location-hdr']}>{weather.name}, {weather.sys.country}</h2>
+                <CurrentWeather weather={weather}/>
+            {/* <div className={styles['day-ctr']}>
                 {forecast.map((day) => (
                     <DayCard 
                     dayInfo={day}
                     key={day.dt}
                     />
                 ))}
-            </div>
+            </div> */}
         </div>
     )
 }
