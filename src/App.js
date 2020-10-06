@@ -9,7 +9,6 @@ class App extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      forecast: [],
       weather: [],
       city: 'Raleigh'
     }
@@ -60,13 +59,26 @@ class App extends Component {
       )
   }
 
-  componentDidMount() {
-    this.fetchForecast(this.state.city)
-    this.fetchWeather(this.state.city)
+  handleSearchCity = () => {
+
   }
 
-    render() {
-      if (this.state.error) {
+  updateInput = (e) => {
+    const city = e.target.value
+
+    this.setState({
+      city
+    })
+  }
+
+  componentDidMount() {
+    this.fetchForecast(this.state.city)
+    // this.fetchWeather(this.state.city)
+  }
+
+
+  render() {
+    if (this.state.error) {
         return <div>Error: {this.state.error.message}</div>
       } else if (!this.state.isLoaded) {
         return <div>Loading...</div>
@@ -75,6 +87,18 @@ class App extends Component {
         <div className="App">
           <header className="Weather-hdr">
             5-Day Forecast
+
+            <input 
+              type='text'
+              placeholder='Raleigh'
+              maxLength='50'
+              value={this.state.city}
+              onChange={this.updateInput}
+            />
+
+            <button>
+              Search
+            </button>
           </header>
     
           <div>
