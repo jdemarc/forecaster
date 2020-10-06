@@ -5,6 +5,11 @@
 
 .Weather-hdr {
   padding: 10vh;
-  font-size: 35px;
+  font-size: 25px;
   background-color: gray;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
 }

@@ -8,9 +8,9 @@ class App extends Component {
 
     this.state = {
       error: null,
-      isLoaded: false,
+      isLoaded: true,
       weather: [],
-      city: 'Raleigh'
+      city: ''
     }
   }
 
@@ -59,21 +59,20 @@ class App extends Component {
       )
   }
 
-  handleSearchCity = () => {
-
+  // Edge cases needed.
+  handleSubmitClick = () => {
+    if (this.state.city) {
+      this.fetchForecast(this.state.city)
+      console.log('fetching')
+    }
   }
 
-  updateInput = (e) => {
+  handleInput = (e) => {
     const city = e.target.value
 
     this.setState({
       city
     })
-  }
-
-  componentDidMount() {
-    this.fetchForecast(this.state.city)
-    // this.fetchWeather(this.state.city)
   }
 
 
@@ -83,30 +82,36 @@ class App extends Component {
       } else if (!this.state.isLoaded) {
         return <div>Loading...</div>
       } else {
+
       return (
         <div className="App">
           <header className="Weather-hdr">
-            5-Day Forecast
+            <h2>Weather app</h2>
 
-            <input 
-              type='text'
-              placeholder='Raleigh'
-              maxLength='50'
-              value={this.state.city}
-              onChange={this.updateInput}
-            />
+            <div className="search">
+              <input 
+                type='text'
+                placeholder='Raleigh'
+                maxLength='50'
+                value={this.state.city}
+                onChange={this.handleInput}
+              />
 
-            <button>
-              Search
-            </button>
+              <button onClick={this.handleSubmitClick}>
+                Search
+              </button>
+            </div>
           </header>
     
-          <div>
-            <WeatherPanel
+          { this.state.forecast
+          ?  <WeatherPanel
               city={this.state.city}
               forecast={this.state.forecast}
               weather={this.state.weather}
             />
+          : <div></div>
+          }
+          <div>
           </div>
         </div>
       );
