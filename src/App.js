@@ -9,21 +9,24 @@ class App extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      weather: []
+      forecast: [],
+      weather: [],
+      city: 'Raleigh'
     }
   }
 
-  componentDidMount() {
+  fetchForecast = (city) => {
     const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
-    const URL = `http://api.openweathermap.org/data/2.5/forecast?id=4487042&units=imperial&appid=${API_KEY}`
+    const URL = `http://api.openweathermap.org/data/2.5/forecast?q=${city},us&units=imperial&appid=${API_KEY}`
     fetch(URL)
     .then(res => res.json())
     .then(
       (result) => {
-        const dailyWeather = result.list.filter(day => (day.dt_txt.includes('18:00:00')))
+        const dailyForecast = result.list.filter(day => (day.dt_txt.includes('18:00:00')))
           this.setState({
             isLoaded: true,
-            weather: dailyWeather
+            forecast: dailyForecast,
+            city
           });
         },
         (error) => {
@@ -33,6 +36,33 @@ class App extends Component {
           });
         }
       )
+  }
+
+  fetchWeather = (city) => {
+    const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
+    const URL = `http://api.openweathermap.org/data/2.5/weather?q=${city},us&units=imperial&appid=${API_KEY}`
+    fetch(URL)
+    .then(res => res.json())
+    .then(
+      (result) => {
+          this.setState({
+            isLoaded: true,
+            weather: result,
+            city
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+  }
+
+  componentDidMount() {
+    this.fetchForecast(this.state.city)
+    this.fetchWeather(this.state.city)
   }
 
     render() {
@@ -48,7 +78,11 @@ class App extends Component {
           </header>
     
           <div>
-            <WeatherPanel weather={this.state.weather}/>
+            <WeatherPanel
+              city={this.state.city}
+              forecast={this.state.forecast}
+              weather={this.state.weather}
+            />
           </div>
         </div>
       );
