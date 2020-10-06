@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import './App.css'
-import WeatherPanel from './components/WeatherPanel'
+import React, { Component } from 'react';
+import './App.css';
+import WeatherPanel from './components/WeatherPanel';
 
 class App extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class App extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      weather: [],
+      weather: []
     }
   }
 
@@ -41,15 +41,16 @@ class App extends Component {
       } else if (!this.state.isLoaded) {
         return <div>Loading...</div>
       } else {
-        return (
-          <div className="App">
-            <header className="Weather-hdr">
-              5-Day Forecast
-            </header>
-      
+      return (
+        <div className="App">
+          <header className="Weather-hdr">
+            5-Day Forecast
+          </header>
+    
+          <div>
             <WeatherPanel weather={this.state.weather}/>
-
           </div>
+        </div>
       );
     }
   }
