@@ -10,7 +10,7 @@ class App extends Component {
     weather: {},
     city: '',
     // Initialized to true so the Weather component is not rendered automatically.
-    error: true,
+    input: false
   }
 
   // Edge cases needed.
@@ -20,11 +20,11 @@ class App extends Component {
     if (weatherData.cod === 200) {
       this.setState({
         weather: weatherData,
-        error: false
+        input: true
       })
     } else {
       this.setState({
-        error: true
+        input: false
       })
     }
   }
@@ -49,7 +49,7 @@ class App extends Component {
             />
           </div>
 
-          { !this.state.error
+          { this.state.input
             ? <WeatherPanel
                 city={this.state.city}
                 weather={this.state.weather}

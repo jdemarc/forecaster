@@ -1,9 +1,8 @@
 .CurrentWeather {
     display: flex;
-    width: 50%;
+    width: 100%;
     justify-content: space-evenly;
     align-items: center;
-    margin-left: 10vh;
 }
 
 .weather-card {
@@ -12,6 +11,6 @@
     margin-left: 10vh;
 }
 
-.degrees {
+.inner-weather {
     font-size: 50px;
 }

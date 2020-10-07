@@ -1,0 +1,5 @@
+.DetailCard {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10vh;
+}
