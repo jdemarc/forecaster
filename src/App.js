@@ -37,7 +37,6 @@ class App extends Component {
     })
   }
 
-
   render() {
       return (
         <div className="App">
@@ -55,7 +54,11 @@ class App extends Component {
                 city={this.state.city}
                 weather={this.state.weather}
               />
-            : <div/>
+            : <div 
+                style={{margin: 20}}
+              >
+                We require additional pylons.
+              </div>
           }
         </div>
       );

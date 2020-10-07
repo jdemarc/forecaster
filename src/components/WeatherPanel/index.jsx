@@ -2,18 +2,14 @@ import React from 'react'
 import styles from './WeatherPanel.module.css'
 import CurrentWeather from '../CurrentWeather'
 import DetailCard from '../DetailCard'
-
-const moment = require('moment')
+import { parseDateTime } from '../../helpers/dt-format'
 
 function WeatherPanel(props) {
     const weather = props.weather
 
-    const newDate = new Date()
-    const weekday = weather.dt * 1000
-    newDate.setTime(weekday)
+    const formattedWeekday = parseDateTime('weekday', weather.dt)
+    const formattedDate = parseDateTime('datetime', weather.dt)
 
-    const formattedWeekday = moment(newDate).format('dddd')
-    const formattedDate = moment(newDate).format('MMMM Do YYYY, h:mm a')
     return (
         <div className={styles.WeatherPanel}>
             <div className={styles['location-hdr']}>
@@ -21,7 +17,7 @@ function WeatherPanel(props) {
                 {weather.name}, {weather.sys.country}
               </div>
               <div
-                style={{fontSize: 20}}
+                style={{fontSize: 16}}
               >
                 {formattedWeekday}, {formattedDate}
               </div>
