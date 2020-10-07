@@ -3,10 +3,6 @@
   height: 100vh;
 }
 
-.Weather-hdr {
-  display: flex;
-  padding: 2vh;
-  font-size: 15px;
-  background-color: gray;
-  align-items: center;
+.weather-hdr-full {
+  height: 15vh;
 }

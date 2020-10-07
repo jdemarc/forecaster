@@ -41,7 +41,7 @@ class App extends Component {
   render() {
       return (
         <div className="App">
-          <div className="Weather-hdr">
+            <div className='weather-hdr-full'>
             <h2>Weather app</h2>
             <Search
               city={this.state.city}
@@ -55,7 +55,7 @@ class App extends Component {
                 city={this.state.city}
                 weather={this.state.weather}
               />
-            : <div>We require additional pylons.</div>
+            : <div/>
           }
         </div>
       );
