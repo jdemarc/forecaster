@@ -5,26 +5,27 @@ import Search from './components/Search'
 import { fetchWeatherData } from './services/weather-api'
 
 class App extends Component {
-
   //Implicit constructor call
   state = {
-    weather: [],
+    weather: {},
     city: '',
-    error: null
+    // Initialized to true so the Weather component is not rendered automatically.
+    error: true,
   }
 
   // Edge cases needed.
   handleCityChange = async () => {
     const weatherData = await fetchWeatherData(this.state.city);
     
-    if (weatherData) {
+    if (weatherData.cod === 200) {
       this.setState({
-        weather: weatherData
+        weather: weatherData,
+        error: false
       })
     } else {
-      // this.setState({
-        //error
-      // })
+      this.setState({
+        error: true
+      })
     }
   }
 
@@ -48,17 +49,14 @@ class App extends Component {
               handleCityChange={this.handleCityChange}
             />
           </div>
-          
-          {/* { this.state.forecast
-          ?  <WeatherPanel
-              city={this.state.city}
-              forecast={this.state.forecast}
-              weather={this.state.weather}
-            />
-          : <div></div>
-          } */}
-          <div>
-          </div>
+
+          { !this.state.error
+            ? <WeatherPanel
+                city={this.state.city}
+                weather={this.state.weather}
+              />
+            : <div>We require additional pylons.</div>
+          }
         </div>
       );
   }

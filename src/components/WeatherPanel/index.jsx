@@ -4,7 +4,6 @@ import DayCard from '../DayCard'
 import CurrentWeather from '../CurrentWeather'
 
 function WeatherPanel(props) {
-    const forecast = props.forecast
     const weather = props.weather
 
     return (

@@ -5,7 +5,8 @@
 
 .location-hdr {
     display: flex;
-    justify-content: center;
+    margin: 7vh;
+    font-size: 30px;
 }
 
 .day-ctr {
