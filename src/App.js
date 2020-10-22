@@ -1,69 +1,52 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import WeatherPanel from './components/WeatherPanel'
 import Search from './components/Search'
 import { fetchWeatherData } from './services/weather-api'
 
-class App extends Component {
-  //Implicit constructor call
-  state = {
-    weather: {},
-    city: '',
-    // Initialized to true so the Weather component is not rendered automatically.
-    input: false
-  }
+const App = () => {
 
-  // Edge cases needed.
-  handleCityChange = async () => {
-    const weatherData = await fetchWeatherData(this.state.city);
+  const [weather, setWeather] = useState({})
+  const [city, setCity] = useState('');
+  const [input, setInput] = useState(false)
+
+  // Edge cases needed ?
+  const handleCityChange = async () => {
+    const weatherData = await fetchWeatherData(city);
     
     if (weatherData.cod === 200) {
-      this.setState({
-        weather: weatherData,
-        input: true
-      })
+      setWeather(weatherData);
+      setInput(true);
     } else {
-      this.setState({
-        input: false
-      })
+      setInput(false);
     }
   }
 
-  handleInput = (e) => {
+  const handleInput = (e) => {
     const city = e.target.value
-
-    this.setState({
-      city
-    })
+    setCity(city);
   }
 
-  render() {
       return (
         <div className="App">
             <div className='weather-hdr-full'>
             <h2>Weather app</h2>
             <Search
-              city={this.state.city}
-              handleInput={this.handleInput}
-              handleCityChange={this.handleCityChange}
+              city={city}
+              handleInput={handleInput}
+              handleCityChange={handleCityChange}
             />
           </div>
 
-          { this.state.input
+          { input
             ? <WeatherPanel
-                city={this.state.city}
-                weather={this.state.weather}
+                city={city}
+                weather={weather}
               />
-            : <div 
-                style={{margin: 20}}
-              >
-                We require additional pylons. <br />
-                Ahem.. enter a city.
-              </div>
+            : null
           }
         </div>
       );
-  }
 }
 
 export default App;
