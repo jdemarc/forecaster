@@ -2,8 +2,7 @@ import React from 'react'
 import styles from './DetailCard.module.css'
 import { parseDateTime } from '../../helpers/dt-format'
 
-function DetailCard(props) {
-    const weather = props.weather
+const DetailCard = ( {weather} ) => {
     const sunrise = parseDateTime('time', weather.sys.sunrise)
     const sunset = parseDateTime('time', weather.sys.sunset)
 

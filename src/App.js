@@ -57,7 +57,8 @@ class App extends Component {
             : <div 
                 style={{margin: 20}}
               >
-                We require additional pylons.
+                We require additional pylons. <br />
+                Ahem.. enter a city.
               </div>
           }
         </div>

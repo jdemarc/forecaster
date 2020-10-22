@@ -4,8 +4,7 @@ import CurrentWeather from '../CurrentWeather'
 import DetailCard from '../DetailCard'
 import { parseDateTime } from '../../helpers/dt-format'
 
-function WeatherPanel(props) {
-    const weather = props.weather
+const WeatherPanel = ( {weather} ) => {
 
     const formattedWeekday = parseDateTime('weekday', weather.dt)
     const formattedDate = parseDateTime('datetime', weather.dt)
